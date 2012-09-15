@@ -45,7 +45,7 @@ namespace WebCore {
 // Otherwise will draw a static image.
 // NOTE: These values are matching the ones in HTML5VideoView.java
 // Please keep them in sync when changed here.
-typedef enum {INITIALIZED, PREPARING, PREPARED, PLAYING, BUFFERING, RELEASED} PlayerState;
+typedef enum {INITIALIZED, PREPARING, PREPARED, PLAYING, RELEASED} PlayerState;
 
 class VideoLayerObserverInterface : public SkRefCnt {
 public:
@@ -68,11 +68,12 @@ public:
     virtual bool drawGL(bool layerTilesDisabled);
     void setSurfaceTexture(sp<SurfaceTexture> texture, int textureName, PlayerState playerState);
     virtual bool needsIsolatedSurface() { return true; }
-    void setPlayerState(PlayerState state);
     void registerVideoLayerObserver(VideoLayerObserverInterface* observer);
+
 private:
     void init();
-    void showProgressSpinner(const SkRect& innerRect);
+    void showPreparingAnimation(const SkRect& rect,
+                                const SkRect innerRect);
     SkRect calVideoRect(const SkRect& rect);
     // Surface texture for showing the video is actually allocated in Java side
     // and passed into this native code.

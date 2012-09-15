@@ -47,8 +47,6 @@ enum IconType {
     PauseIcon
 };
 
-static const size_t surfaceMatrixSize = 4 * 4;
-
 // Every video layer can use its uniqueId to query VideoLayerManager about such
 // info globally.
 struct VideoLayerInfo {
@@ -56,9 +54,7 @@ struct VideoLayerInfo {
     int videoSize; // The size of the video.
     float aspectRatio; // The aspect ratio of the video.
     int timeStamp; // Used to decide which VideoLayerInfo is the oldest one.
-    GLfloat surfaceMatrix[surfaceMatrixSize];
-    bool matrixInitialized;
-    bool canBeRecycled;
+    GLfloat surfaceMatrix[16];
 
     double lastIconShownTime;
     IconState iconState;
@@ -80,8 +76,6 @@ public:
     void updateMatrix(const int layerId, const GLfloat* matrix);
     // Remove the layer info from the mapping.
     void removeLayer(const int layerId);
-    // Mark this texture to be eligible for recycling if needed
-    void markTextureForRecycling(const int layerId, const GLuint textureId);
 
     // Return the texture name corresponding to the layerId
     GLuint getTextureId(const int layerId);

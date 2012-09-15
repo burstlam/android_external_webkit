@@ -125,7 +125,6 @@ public:
     virtual void prepareEnterFullscreen() { }
     virtual void prepareExitFullscreen() { }
     VideoLayerObserver* getVideoLayerObserver() { return m_videoLayerObserver; }
-    virtual void updateVideoLayerSize() { }
 
 protected:
     // Android-specific methods and fields.
