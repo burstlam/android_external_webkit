@@ -90,7 +90,6 @@ struct FieldIds {
         mDefaultFontSize = env->GetFieldID(clazz, "mDefaultFontSize", "I");
         mDefaultFixedFontSize = env->GetFieldID(clazz, "mDefaultFixedFontSize", "I");
         mLoadsImagesAutomatically = env->GetFieldID(clazz, "mLoadsImagesAutomatically", "Z");
-        mMediaPreloadEnabled = env->GetFieldID(clazz, "mMediaPreloadEnabled", "Z");
 #ifdef ANDROID_BLOCK_NETWORK_IMAGE
         mBlockNetworkImage = env->GetFieldID(clazz, "mBlockNetworkImage", "Z");
 #endif
@@ -174,7 +173,6 @@ struct FieldIds {
         ALOG_ASSERT(mDefaultFontSize, "Could not find field mDefaultFontSize");
         ALOG_ASSERT(mDefaultFixedFontSize, "Could not find field mDefaultFixedFontSize");
         ALOG_ASSERT(mLoadsImagesAutomatically, "Could not find field mLoadsImagesAutomatically");
-        ALOG_ASSERT(mMediaPreloadEnabled, "Could not find field mMediaPreloadEnabled");
 #ifdef ANDROID_BLOCK_NETWORK_IMAGE
         ALOG_ASSERT(mBlockNetworkImage, "Could not find field mBlockNetworkImage");
 #endif
@@ -230,7 +228,6 @@ struct FieldIds {
     jfieldID mDefaultFontSize;
     jfieldID mDefaultFixedFontSize;
     jfieldID mLoadsImagesAutomatically;
-    jfieldID mMediaPreloadEnabled;
 #ifdef ANDROID_BLOCK_NETWORK_IMAGE
     jfieldID mBlockNetworkImage;
 #endif
@@ -418,9 +415,6 @@ public:
         s->setLoadsImagesAutomatically(flag);
         if (flag)
             cachedResourceLoader->setAutoLoadImages(true);
-
-        flag = env->GetBooleanField(obj, gFieldIds->mMediaPreloadEnabled);
-        s->setMediaPreloadEnabled(flag);
 
 #ifdef ANDROID_BLOCK_NETWORK_IMAGE
         flag = env->GetBooleanField(obj, gFieldIds->mBlockNetworkImage);
