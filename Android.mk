@@ -294,19 +294,20 @@ else
   ifeq ($(call is-board-platform,msm7x27a),true)
     LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=2
   else
-  ifeq ($(call is-board-platform,msm7x30),true)
-    LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=3
-  else
-    ifeq ($(call is-board-platform,msm8660),true)
-      LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=4
-    else
-      ifeq ($(call is-board-platform,msm8960),true)
-        LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=5
-      else
-        ifeq ($(call is-board-platform,copper),true)
-          LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=6
-        else
-          LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=1
+   ifeq ($(call is-board-platform,msm7x30),true)
+     LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=3
+   else
+     ifeq ($(call is-board-platform,msm8660),true)
+       LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=4
+     else
+       ifeq ($(call is-board-platform,msm8960),true)
+         LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=5
+       else
+         ifeq ($(call is-board-platform,copper),true)
+           LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=6
+         else
+           LOCAL_CFLAGS += -DVIDEO_PLATFORM_ID=1
+          endif
         endif
       endif
     endif
